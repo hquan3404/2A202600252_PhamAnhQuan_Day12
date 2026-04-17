@@ -31,8 +31,24 @@ import uvicorn
 
 from app.config import settings
 
-# Mock LLM (thay bằng OpenAI/Anthropic khi có API key)
-from utils.mock_llm import ask as llm_ask
+# SỬ DỤNG BOT LỊCH SỬ TỪ DAY 3 THAY VÌ MOCK
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from src.agent.agent import HistoryAgent
+from src.tools.tool_registry import ToolRegistry
+from src.core.gemini_provider import GeminiProvider
+
+_history_agent = None
+
+def get_agent():
+    global _history_agent
+    if _history_agent is None:
+        llm = GeminiProvider(model_name="gemini-2.5-flash")
+        tool_registry = ToolRegistry(data_path="data/data.md")
+        _history_agent = HistoryAgent(llm=llm, tool_registry=tool_registry)
+    return _history_agent
 
 # ─────────────────────────────────────────────────────────
 # Logging — JSON structured
@@ -145,7 +161,8 @@ async def request_middleware(request: Request, call_next):
         # Security headers
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["X-Frame-Options"] = "DENY"
-        response.headers.pop("server", None)
+        if "server" in response.headers:
+            del response.headers["server"]
         duration = round((time.time() - start) * 1000, 1)
         logger.info(json.dumps({
             "event": "request",
@@ -214,7 +231,14 @@ async def ask_agent(
         "client": str(request.client.host) if request.client else "unknown",
     }))
 
-    answer = llm_ask(body.question)
+    # Gọi Bot trả lời dựa trên Agent thực tế
+    try:
+        agent = get_agent()
+        import asyncio
+        answer = await asyncio.to_thread(agent.run, body.question)
+    except Exception as e:
+        logger.error(f"Error calling agent: {e}")
+        raise HTTPException(status_code=500, detail="Cú pháp API Gemini hoặc Agent lỗi")
 
     output_tokens = len(answer.split()) * 2
     check_and_record_cost(0, output_tokens)
