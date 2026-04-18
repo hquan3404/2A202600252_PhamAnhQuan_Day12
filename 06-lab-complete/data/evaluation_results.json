@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "mode": "baseline",
+    "latency": 4.05,
+    "loops": 1,
+    "tokens": 3010,
+    "error": "None",
+    "answer": "Theo nguồn 1, Tổng thống Kennơđi đã bị ám sát vào ngày 22-11-1963...."
+  },
+  {
+    "id": 1,
+    "mode": "agent",
+    "latency": 6.12,
+    "loops": 2,
+    "tokens": 2247,
+    "error": "None",
+    "answer": "Dựa trên thông tin đã thu thập được:  Vào ngày 22 tháng 11 năm 1963, **Tổng thốn..."
+  },
+  {
+    "id": 2,
+    "mode": "baseline",
+    "latency": 5.23,
+    "loops": 1,
+    "tokens": 3359,
+    "error": "None",
+    "answer": "Theo nguồn tài liệu được cung cấp:  Trong 3 năm (1965-1968), tổng số vốn đầu tư ..."
+  },
+  {
+    "id": 2,
+    "mode": "agent",
+    "latency": 83.7,
+    "loops": 2,
+    "tokens": 8600,
+    "error": "None",
+    "answer": "Trong 3 năm (1965-1968), tổng số vốn đầu tư vào công nghiệp địa phương ở miền Bắ..."
+  },
+  {
+    "id": 3,
+    "mode": "baseline",
+    "latency": 14.58,
+    "loops": 1,
+    "tokens": 5463,
+    "error": "None",
+    "answer": "Đảng và Chính phủ chủ trương tập trung phát triển công nghiệp địa phương (quy mô..."
+  },
+  {
+    "id": 3,
+    "mode": "agent",
+    "latency": 17.11,
+    "loops": 2,
+    "tokens": 5717,
+    "error": "None",
+    "answer": "Đảng và Chính phủ Việt Nam đã chủ trương tập trung phát triển công nghiệp địa ph..."
+  },
+  {
+    "id": 4,
+    "mode": "baseline",
+    "latency": 14.71,
+    "loops": 1,
+    "tokens": 6046,
+    "error": "None",
+    "answer": "Dựa trên các nguồn tài liệu được cung cấp, dưới đây là đối chiếu và phân tích sự..."
+  },
+  {
+    "id": 4,
+    "mode": "agent",
+    "latency": 19.44,
+    "loops": 2,
+    "tokens": 12438,
+    "error": "None",
+    "answer": "Trong giai đoạn 1965-1968, tình hình phát triển công nghiệp ở miền Bắc Việt Nam,..."
+  },
+  {
+    "id": 5,
+    "mode": "baseline",
+    "latency": 4.16,
+    "loops": 1,
+    "tokens": 3197,
+    "error": "None",
+    "answer": "Tôi không tìm thấy thông tin này trong tài liệu được cung cấp về vị của thịt bò...."
+  },
+  {
+    "id": 5,
+    "mode": "agent",
+    "latency": 28.32,
+    "loops": 2,
+    "tokens": 1497,
+    "error": "None",
+    "answer": "Dựa trên thông tin đã thu thập được, tôi không thể cung cấp câu trả lời về vị củ..."
+  }
+]
